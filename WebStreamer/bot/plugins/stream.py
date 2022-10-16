@@ -91,7 +91,7 @@ async def private_receive_handler(c: Client, m: Message):
             parse_mode=ParseMode.HTML, 
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Dᴏᴡɴʟᴏᴀᴅ ɴᴏᴡ 📥", url=stream_link)]]),
-
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Dᴏᴡᴀᴅ ɴᴏᴡ 📥", url=olink)]]),
             quote=True
         )
     except FloodWait as e:
@@ -136,11 +136,3 @@ async def channel_receive_handler(bot, broadcast):
         
         
         
-async def get_shortlink(link):
-    url = 'https://tnlink.in//api'
-    params = {'api': API_KEY, 'url': link}
-
-    async with aiohttp.ClientSession() as session:
-        async with session.get(url, params=params, raise_for_status=True) as response:
-            data = await response.json()
-            return data["shortenedUrl"]
