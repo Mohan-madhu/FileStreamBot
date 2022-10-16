@@ -1,4 +1,4 @@
-import asyncio
+
 import aiohttp
 import urllib.parse
 from WebStreamer.bot import StreamBot
@@ -11,7 +11,6 @@ from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.enums.parse_mode import ParseMode
 db = Database(Var.DATABASE_URL, Var.SESSION_NAME)
 
-API_KEY = e34f8597fe26034bf77a3878242c0b1c62b2ec49
 
 
 def get_media_file_size(m):
@@ -75,16 +74,7 @@ async def private_receive_handler(c: Client, m: Message):
                                     file_name)
         
         dlink = stream_link
-        dlink = stream_link.split("\n")
         olink = "https://url.mysteryfacts.xyz/st?api=b6bc7bf0a57506f205a4ae8a04694ce5de1501d1&url=" + dlink
-        for num in range(len(olink)):
-            try:
-                tnlink = await get_shortlink(olink[num])
-            except Exception as eee:
-                await m.reply_text(Error: {eee}, quote=True)
-                                 
-
-
         
 
         msg_text ="""
@@ -97,10 +87,11 @@ async def private_receive_handler(c: Client, m: Message):
 
         await log_msg.reply_text(text=f"**RᴇQᴜᴇꜱᴛᴇᴅ ʙʏ :** [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n**Uꜱᴇʀ ɪᴅ :** `{m.from_user.id}`\n**Dᴏᴡɴʟᴏᴀᴅ ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True, parse_mode=ParseMode.MARKDOWN, quote=True)
         await m.reply_text(
-            text=msg_text.format(file_name, file_size, tnlink),
+            text=msg_text.format(file_name, file_size, olink),
             parse_mode=ParseMode.HTML, 
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Dᴏᴡɴʟᴏᴀᴅ ɴᴏᴡ 📥", url=stream_link)]]),
+
             quote=True
         )
     except FloodWait as e:
