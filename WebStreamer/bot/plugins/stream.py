@@ -90,8 +90,7 @@ async def private_receive_handler(c: Client, m: Message):
             text=msg_text.format(file_name, file_size, olink),
             parse_mode=ParseMode.HTML, 
             disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Dᴏᴡɴʟᴏᴀᴅ ɴᴏᴡ 📥", url=stream_link)]]),
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Dᴏᴡᴀᴅ ɴᴏᴡ 📥", url=olink)]]),
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Dᴏᴡɴʟᴏᴀᴅ ɴᴏᴡ 📥", url=stream_link),InlineKeyboardButton("Dᴏᴡᴀᴅ ɴᴏᴡ 📥", url=olink)]]),
             quote=True
         )
     except FloodWait as e:
